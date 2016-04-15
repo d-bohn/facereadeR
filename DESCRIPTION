@@ -1,0 +1,15 @@
+Package: facereadeR
+Type: Package
+Title: A Package for Working with FaceReader 6.x Output
+Version: 0.1.0
+Author: Daniel N. Albohn
+Maintainer: dna5021@psu.edu
+Description: Various functions for wrangling output produced by FaceReader 6.x into managable formats for further analysis with R.
+License: GPL-3
+Imports:
+  plyr
+  stringr
+  Rmisc
+  ggplot2
+  car
+LazyData: TRUE

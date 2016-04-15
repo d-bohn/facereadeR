@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\nread.facereader <- function(path) {\n  path <- path\n  get_files <- function(filename){\n    if(file.info(filename)$size > 0){\n      ret <- read.table(filename,skip = 8, header=TRUE, sep=\"\\t\")\n      ret$Source <- filename\n      ret\n    }\n  }\n\n  # Get text files and merge them into a single data frame\n  files_list <- list.files(pattern = \"*.txt\")\n\n  # Merge all datasets into a single file\n  data <- ldply(files_list, get_files)\n  return(data)\n}\n\nmake.sub.id <- function(data){\n  subject_id <- sub(\".*Participant *(.*?) *_Analysis.*\", \"\\\\1\", data$Source)\n  subject_id <- as.numeric(sub(\".*_ *(.*?) *_Analysis.*\", \"\\\\1\", data$Source))\n  return(subject_id)\n}\n\n\nmake.analysis.id <- function(data){\n  analysis <- as.numeric(sub(\".*_Analysis *(.*?) *_video.*\", \"\\\\1\", data$Source))\n  return(analysis)\n}\n\n\nmake.condition.id <- function(data){\n  condition <- as.numeric(substr(data$subject_id, 2,2))\n}\n",
+    "created" : 1460648067328.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4246817051",
+    "id" : "B648996B",
+    "lastKnownWriteTime" : 1460652956,
+    "last_content_update" : 1460652956953,
+    "path" : "~/Documents/School Work/facereadeR/R/read.facereader.R",
+    "project_path" : "R/read.facereader.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
