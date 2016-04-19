@@ -13,7 +13,7 @@ read.facereader <- function(path) {
   files_list <- list.files(pattern = "*.txt")
 
   # Merge all datasets into a single file
-  data <- ldply(files_list, get_files)
+  data <- plyr::ldply(files_list, get_files)
   return(data)
 }
 

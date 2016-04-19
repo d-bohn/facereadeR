@@ -72,7 +72,7 @@ score.aus <- function(data){
   )
 
   data[AUs] <- lapply(data[AUs],
-                      function(x) recode(x, recodes = "'A'=1; 'B'=2; 'C'=3; 'D'=4;
+                      function(x) car::recode(x, recodes = "'A'=1; 'B'=2; 'C'=3; 'D'=4;
                                    'E'=5;'NotActive'=0; else=NA;", as.factor.result = FALSE))
   return(data)
 }

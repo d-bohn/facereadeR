@@ -7,9 +7,9 @@ Maintainer: dna5021@psu.edu
 Description: Various functions for wrangling output produced by FaceReader 6.x into managable formats for further analysis with R.
 License: GPL-3
 Imports:
-  plyr
-  stringr
-  Rmisc
-  ggplot2
+  plyr,
+  stringr,
+  Rmisc,
+  ggplot2,
   car
 LazyData: TRUE
