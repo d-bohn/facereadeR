@@ -1,5 +1,16 @@
-clean.data <- function(data){
+clean.data <- function(data, include = c("Basic","All")){
   data <- data
+  if(include=="Basic"){
+  data$Neutral <- as.numeric(gsub("FIT_FAILED", NA, data$Neutral))
+  data$Happy <- as.numeric(gsub("FIT_FAILED", NA, data$Happy))
+  data$Sad <- as.numeric(gsub("FIT_FAILED", NA, data$Sad))
+  data$Angry <- as.numeric(gsub("FIT_FAILED", NA, data$Angry))
+  data$Surprised <- as.numeric(gsub("FIT_FAILED", NA, data$Surprised))
+  data$Scared <- as.numeric(gsub("FIT_FAILED", NA, data$Scared))
+  data$Disgusted <- as.numeric(gsub("FIT_FAILED", NA, data$Disgusted))
+  data$Valence <- as.numeric(gsub("FIT_FAILED", NA, data$Valence))
+  data$Arousal <- as.numeric(gsub("FIT_FAILED", NA, data$Arousal))
+  }else{
   data$Neutral <- as.numeric(gsub("FIT_FAILED", NA, data$Neutral))
   data$Happy <- as.numeric(gsub("FIT_FAILED", NA, data$Happy))
   data$Sad <- as.numeric(gsub("FIT_FAILED", NA, data$Sad))
@@ -36,6 +47,7 @@ clean.data <- function(data){
   data$Left.Eyebrow <- as.factor(gsub("FIND_FAILED", NA, data$Left.Eyebrow))
   data$Right.Eyebrow <- as.factor(gsub("FIT_FAILED", NA, data$Right.Eyebrow))
   data$Right.Eyebrow <- as.factor(gsub("FIND_FAILED", NA, data$Right.Eyebrow))
+  }
   return(data)
 }
 
@@ -103,4 +115,38 @@ create.epochs <- function(data, sample.rate, epoch){
 }
 
 
+remove.na <- function(data){
+  # Deal with NAs
+  ### remove NAs
+  row.has.na <- apply(data, 1, function(x){any(is.na(x))})
+  ### shows you how many missing values you have
+  sum(row.has.na)
+  ### then remove any row that will have an NA in any column
+  data <- data[!row.has.na,]
+}
 
+
+reduce.data <- function(data, keep = c("Emotions","AUs","Both","All")){
+  data <- data
+  if(keep=="Emotions"){
+    keep_cols <- c("Neutral","Happy","Sad","Angry","Surprised","Scared","Disgusted","Valence",
+                   "Arousal","subject_id","analysis","condition","epoch")
+    data <- data[,keep_cols]
+    return(data)
+  } else if (keep=="AUs") {
+    keep_cols <- c("AU01","AU02","AU04","AU05","AU06","AU07","AU09","AU10","AU12","AU14","AU15","AU17",
+                   "AU18","AU20","AU23","AU24","AU25","AU26","AU27","AU43","subject_id","analysis",
+                   "condition","epoch")
+    data <- data[,keep_cols]
+    return(data)
+  } else if (keep=="Both") {
+    keep_cols <- c("Neutral","Happy","Sad","Angry","Surprised","Scared","Disgusted","Valence",
+                   "Arousal","subject_id","analysis","condition","epoch","AU01","AU02","AU04",
+                   "AU05","AU06","AU07","AU09","AU10","AU12","AU14","AU15","AU17",
+                   "AU18","AU20","AU23","AU24","AU25","AU26","AU27","AU43")
+    data <- data[,keep_cols]
+    return(data)
+  } else {
+    return(data)
+  }
+}

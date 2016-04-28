@@ -1,8 +1,8 @@
 \name{read.facereader}
-\alias{read.facereader}
+\alias{facereadeR}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+read.facereader
 }
 \description{
 This function reads in FaceReader 6.x text files, strips excess front matter, and aggragates them into a single data frame for further analysis.
@@ -17,10 +17,10 @@ The complete file path to location of your text files.
 }
 }
 \details{
-The file path (\code{path}) should lead to a directory that contains all of the text files that should be read into the R workspace.
+The file path (\code{path}) should lead to a directory that contains all of the text files that will be read into the R workspace.
 }
 \value{
-Returns aggregated and stripped data to be further processed with \code{\link{clean.facereader}}.
+Returns aggregated and stripped data to be further processed with \code{\link{clean.facereader}} functions.
 }
 \references{
 %% ~put references to the literature/web site here ~

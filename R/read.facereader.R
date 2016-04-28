@@ -1,19 +1,21 @@
 
-read.facereader <- function(path) {
-  path <- path
+read.facereader <- function(path, skip) {
+  wd <- getwd()
+  setwd(path)
   get_files <- function(filename){
     if(file.info(filename)$size > 0){
-      ret <- read.table(filename,skip = 8, header=TRUE, sep="\t")
+      ret <- read.table(filename, skip = skip, header=TRUE, sep="\t")
       ret$Source <- filename
       ret
     }
   }
 
   # Get text files and merge them into a single data frame
-  files_list <- list.files(pattern = "*.txt")
+  files_list <- list.files(path = path, pattern = "*.txt")
 
   # Merge all datasets into a single file
   data <- plyr::ldply(files_list, get_files)
+  setwd(wd)
   return(data)
 }
 
