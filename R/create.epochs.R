@@ -1,3 +1,13 @@
+#' Title
+#'
+#' @param data
+#' @param sample.rate
+#' @param epoch
+#'
+#' @return
+#' @export
+#'
+#' @examples
 create.epochs <- function(data, sample.rate, epoch){
   # Make time numeric so that it is easier to work with
   data$Time2 <- as.numeric(data$Video.Time)

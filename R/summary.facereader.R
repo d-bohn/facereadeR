@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param data
+#' @param type
+#'
+#' @return
+#' @export
+#'
+#' @examples
 summary.facereader <- function(data, type = c("Wide","Long")){
                     if(type=="Long"){
                       data <- Rmisc::summarySEwithin(data = data,

@@ -4,12 +4,12 @@
 \alias{read.facereader}
 \title{Reads FaceReader output data}
 \usage{
-read.facereader(path, skip = 8)
+read.facereader(path, skip = 7)
 }
 \arguments{
 \item{path}{The complete file path to location (folder) of your text files.}
 
-\item{skip}{The number of lines in the text file to skip before the headers should be read. Defaults to 8 lines.}
+\item{skip}{The number of lines in the text file to skip before the headers should be read. Defaults to 7 lines.}
 }
 \value{
 A data frame that includes output provided by FaceReader 6.xx.
@@ -23,7 +23,8 @@ The file path (\code{path}) should lead to a directory that contains all of the 
 files that will be read into the R workspace.
 }
 \examples{
-data <- read.facereader("C:/My/Hard/Drive/Data/")
+
+data <- read.facereader(system.file("inst/", package="facereadeR"), skip = 6)
 
 }
 

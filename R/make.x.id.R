@@ -21,6 +21,8 @@
 #' data$analaysis <- make.analysis.id(data)
 #' data$condition <- make.condition.id(data)
 #'
+#' @export
+#'
 make.sub.id <- function(data){
   subject_id <- sub(".*Participant *(.*?) *_Analysis.*", "\\1", data$Source)
   subject_id <- as.numeric(sub(".*_ *(.*?) *_Analysis.*", "\\1", data$Source))

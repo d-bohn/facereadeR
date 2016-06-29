@@ -1,3 +1,11 @@
+#' Title
+#'
+#' @param data
+#'
+#' @return
+#' @export
+#'
+#' @examples
 rename.aus <- function(data){
   attach(data)
   names(data)[names(data)=="Action.Unit.01...Inner.Brow.Raiser"] <- "AU01"

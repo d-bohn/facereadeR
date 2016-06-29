@@ -1,3 +1,11 @@
+#' Title
+#'
+#' @param data
+#'
+#' @return
+#' @export
+#'
+#' @examples
 remove.na <- function(data){
   # Deal with NAs
   ### remove NAs

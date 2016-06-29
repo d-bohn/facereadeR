@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param data
+#' @param keep
+#'
+#' @return
+#' @export
+#'
+#' @examples
 reduce.data <- function(data, keep = c("Emotions","AUs","Both","All")){
   data <- data
   if(keep=="Emotions"){

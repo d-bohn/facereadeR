@@ -1,3 +1,11 @@
+#' Title
+#'
+#' @param data
+#'
+#' @return
+#' @export
+#'
+#' @examples
 score.aus <- function(data){
   AUs <- c(
     "AU01","AU02","AU04","AU05","AU06","AU07","AU09","AU10","AU12","AU14","AU15","AU17",

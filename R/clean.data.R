@@ -19,6 +19,8 @@
 #' data <- read.facereader("path/to/folder/")
 #' data <- clean.data(data, include = "All")
 #'
+#' @export
+#'
 clean.data <- function(data, include = c("Basic","All")){
   data <- data
   if(include=="Basic"){

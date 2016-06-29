@@ -13,5 +13,5 @@ Imports:
     Rmisc,
     ggplot2,
     car
-LazyData: FALSE
+LazyData: TRUE
 RoxygenNote: 5.0.1

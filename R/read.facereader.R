@@ -15,7 +15,10 @@
 #' A data frame that includes output provided by FaceReader 6.xx.
 #'
 #' @examples
+#'
 #' data <- read.facereader(system.file("inst/", package="facereadeR"), skip = 6)
+#'
+#' @export
 #'
 read.facereader <- function(path, skip = 7) {
   wd <- getwd()
