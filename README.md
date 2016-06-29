@@ -21,5 +21,22 @@ included example data files using:
 This data set includes raw FaceReader output (the text file that FaceReader 6.1 produces) from a selection of the first
 Republican debate where reporter Megyn Kelly confronts Presidential candidate Donald Trump on recent sexist remarks. There are two files: one for Kelly where she asks the question, and one for Trump where he responds.
 
-After the data are imported into a dataframe, we typically need to remove ``NA`` values and create appropriate factors for
-each of the variables to be analyzed.
+After the data are imported into a dataframe, we typically need to remove failures to find the face and replace them with
+``NA`` values. Additionally, twe will create appropriate factors for each of the variables to be analyzed.
+
+    data <- clean.data(data, include = "Basic")
+
+If we are interested in analyzing Action Units (AUs), and they are provided in the output, we could run the following to rename
+them to a simpler format as well as score them so that they become numeric values instead of ``A, B, C, D``. We can also 
+remove ``NA`` values if we feel inclined (for posterity).
+
+    data <- rename.aus(data)
+    data <- score.aus(data)
+    #data <- remove.na(data)
+    
+Next, because FaceReader analyzes every frame of a video file, we create time epochs for which we will average the values over
+to make it simpler once we get the the analyze step.
+
+
+
+
