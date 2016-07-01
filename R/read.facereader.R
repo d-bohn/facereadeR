@@ -19,7 +19,7 @@
 #' data <- read.facereader(system.file("inst/", package="facereadeR"), skip = 6)
 #'
 #' @export
-#'
+
 read.facereader <- function(path, skip = 7) {
   wd <- getwd()
   setwd(path)
