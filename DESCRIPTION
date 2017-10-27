@@ -19,4 +19,7 @@ Imports:
     car
 LazyData: TRUE
 RoxygenNote: 5.0.1
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
