@@ -4,12 +4,19 @@ Title: A Package for Working with FaceReader 6.x Output
 Version: 0.1.0
 Authors@R: person("Daniel", "Albohn", email = "dna5021@psu.edu",
                   role = c("aut", "cre"))
-Description: Various functions for wrangling output produced by FaceReader 6.x into managable formats for further analysis with R.
+Description: Various functions for wrangling output produced by FaceReader 6.x
+    into managable formats for further analysis with R.
 License: GPL-3
-Imports:
-  plyr,
-  stringr,
-  Rmisc,
-  ggplot2,
-  car
+<<<<<<< HEAD
 LazyData: TRUE
+RoxygenNote: 6.0.1
+=======
+Imports:
+    plyr,
+    stringr,
+    Rmisc,
+    ggplot2,
+    car
+LazyData: TRUE
+RoxygenNote: 5.0.1
+>>>>>>> origin/master
