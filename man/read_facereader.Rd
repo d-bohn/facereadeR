@@ -4,10 +4,10 @@
 \alias{read_facereader}
 \title{Read Facereader file}
 \usage{
-read_facereader(file, subject = NULL, skip = NULL)
+read_facereader(file, subject = NULL, skip = NULL, ...)
 }
 \arguments{
-\item{skip}{}
+\item{...}{Additional arguments to be passed to \code{\link[utils]{read.table}}}
 }
 \description{
 Read Facereader file

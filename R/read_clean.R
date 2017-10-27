@@ -3,6 +3,7 @@
 #' @param file
 #' @param subject
 #' @param skip
+#' @param ... Additional arguments to be passed to \code{\link[utils]{read.table}}
 #'
 #' @return
 #' @export
@@ -12,11 +13,14 @@
 #' @examples
 #'
 
-read_facereader <- function(file, subject = NULL, skip = NULL){
-  source <- as.character(read.table(file, nrows = 1, skip = 5)$V2)
+read_facereader <- function(file, subject = NULL, skip = NULL, ...){
+
+  src <- read.table(file, sep="\t", as.is = TRUE, strip.white = TRUE)[1:2]
+  source <- as.character(src[src$V1=='Filename:',2])
 
   if(is.null(skip)){
-    skip <- 8
+    start <- grep("Video Time", src$V1)
+    skip <- start - 1
   }
   if (is.null(subject)){
     subject <- file
@@ -24,7 +28,7 @@ read_facereader <- function(file, subject = NULL, skip = NULL){
     subject <- stringr::str_extract(source, subject)
   }
 
-  df <- read.table(file, skip = skip, header=TRUE, sep="\t")
+  df <- read.table(file, skip = skip, header=TRUE, sep="\t", ...)
 
   data <- df %>%
     mutate(., subject_nr = subject,
@@ -44,7 +48,7 @@ read_facereader <- function(file, subject = NULL, skip = NULL){
 #' @examples
 #'
 
-clean_data <- function(data, include = c("Basic","All")){
+clean_data <- function(data, include = "All"){
   data <- data
   if(include=="Basic"){
     data$Neutral <- as.numeric(gsub("FIT_FAILED", NA, data$Neutral))

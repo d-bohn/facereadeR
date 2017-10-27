@@ -4,7 +4,7 @@
 \alias{clean_data}
 \title{Clean FaceReader data}
 \usage{
-clean_data(data, include = c("Basic", "All"))
+clean_data(data, include = "All")
 }
 \arguments{
 \item{include}{}
