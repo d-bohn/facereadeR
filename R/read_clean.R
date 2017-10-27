@@ -1,22 +1,18 @@
 #' Read Facereader file
 #'
-#' @param file Relative path to FaceReader 6.xx detailed \code{.txt} output file.
-#' @param subject A REGEX to extract a unique identifier from the input source.
-#' @param skip How many lines to skip when reading in the file. Defaults to 8 lines (
-#' the proper number to remove all meta data from output).
+#' @param file
+#' @param subject
+#' @param skip
 #'
-#' @return Data frame of properly formated tidy data file.
-#'
+#' @return
 #' @export
 #' @importFrom magrittr '%>%'
-#' @importFrom stringr str_extract
-#' @importFrom dplyr mutate select
+#' @importFrom dplyr select mutate
 #'
 #' @examples
 #'
 
 read_facereader <- function(file, subject = NULL, skip = NULL){
-
   source <- as.character(read.table(file, nrows = 1, skip = 5)$V2)
 
   if(is.null(skip)){
@@ -31,9 +27,9 @@ read_facereader <- function(file, subject = NULL, skip = NULL){
   df <- read.table(file, skip = skip, header=TRUE, sep="\t")
 
   data <- df %>%
-    dplyr::mutate(., subject_nr = subject,
+    mutate(., subject_nr = subject,
            source = source) %>%
-    dplyr::select(subject_nr, source, everything())
+    select(subject_nr, source, everything())
   return(data)
 }
 
@@ -48,7 +44,7 @@ read_facereader <- function(file, subject = NULL, skip = NULL){
 #' @examples
 #'
 
-clean_data <- function(data, include = "All"){
+clean_data <- function(data, include = c("Basic","All")){
   data <- data
   if(include=="Basic"){
     data$Neutral <- as.numeric(gsub("FIT_FAILED", NA, data$Neutral))
@@ -113,7 +109,7 @@ clean_data <- function(data, include = "All"){
 #' @examples
 
 rename_aus <- function(data){
-  #attach(data)
+  attach(data)
   names(data)[names(data)=="Action.Unit.01...Inner.Brow.Raiser"] <- "AU01"
   names(data)[names(data)=="Action.Unit.02...Outer.Brow.Raiser"] <- "AU02"
   names(data)[names(data)=="Action.Unit.04...Brow.Lowerer"] <- "AU04"
@@ -134,7 +130,7 @@ rename_aus <- function(data){
   names(data)[names(data)=="Action.Unit.26...Jaw.Drop"] <- "AU26"
   names(data)[names(data)=="Action.Unit.27...Mouth.Stretch"] <- "AU27"
   names(data)[names(data)=="Action.Unit.43...Eyes.Closed"] <- "AU43"
-  #detach(data)
+  detach(data)
   return(data)
 }
 

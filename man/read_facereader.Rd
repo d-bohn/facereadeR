@@ -7,15 +7,7 @@
 read_facereader(file, subject = NULL, skip = NULL)
 }
 \arguments{
-\item{file}{Relative path to FaceReader 6.xx detailed \code{.txt} output file.}
-
-\item{subject}{A REGEX to extract a unique identifier from the input source.}
-
-\item{skip}{How many lines to skip when reading in the file. Defaults to 8 lines (
-the proper number to remove all meta data from output).}
-}
-\value{
-Data frame of properly formated tidy data file.
+\item{skip}{}
 }
 \description{
 Read Facereader file

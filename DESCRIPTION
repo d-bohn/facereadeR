@@ -7,19 +7,5 @@ Authors@R: person("Daniel", "Albohn", email = "dna5021@psu.edu",
 Description: Various functions for wrangling output produced by FaceReader 6.x
     into managable formats for further analysis with R.
 License: GPL-3
-<<<<<<< HEAD
 LazyData: TRUE
 RoxygenNote: 6.0.1
-=======
-Imports:
-    plyr,
-    stringr,
-    Rmisc,
-    ggplot2,
-    car
-LazyData: TRUE
-RoxygenNote: 5.0.1
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
