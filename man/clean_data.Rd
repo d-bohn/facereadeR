@@ -7,11 +7,17 @@
 clean_data(data, include = "All")
 }
 \arguments{
-\item{include}{}
+\item{data}{Data to clean, usually in the form that is provided by \code{\link{read_facereader}}.}
+
+\item{include}{Include \code{All} variables, or just the emotions (\code{Basic}) to clean.}
+}
+\value{
+Data frame with fit failures removed, numeric values transformed to class `numeric`,
+and factor values transformed to class `factor`.
 }
 \description{
 Clean FaceReader data
 }
 \examples{
-
+cleaned <- clean_data(data, include = 'Basic')
 }

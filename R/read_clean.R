@@ -1,16 +1,22 @@
 #' Read Facereader file
 #'
-#' @param file
-#' @param subject
-#' @param skip
+#' @param file Path to the FaceReader \code{.txt} file to be read.
+#' @param subject A REGEX to extract from the source file a unique subject identifier.
+#' If \code{NULL} (default), the function will utilize the file name as the unique
+#' identifier (different from \code{source} which is derived from inside the file).
+#' @param skip Number of lines to skip before actual data is present in the file.
+#' If \code{NULL} (defalt), the function will attempt to find where the
+#' actual data start and estimate based off of front matter how many lines to skip
+#' when reading in the file.
 #' @param ... Additional arguments to be passed to \code{\link[utils]{read.table}}
 #'
-#' @return
+#' @return Tidy data frame.
 #' @export
 #' @importFrom magrittr '%>%'
 #' @importFrom dplyr select mutate
 #'
 #' @examples
+#' read_facereader(file = system.file("extdata/Participant 2_Trump_Analysis 1.txt", package="facereadeR"))
 #'
 
 read_facereader <- function(file, subject = NULL, skip = NULL, ...){
@@ -39,14 +45,15 @@ read_facereader <- function(file, subject = NULL, skip = NULL, ...){
 
 #' Clean FaceReader data
 #'
-#' @param data
-#' @param include
+#' @param data Data to clean, usually in the form that is provided by \code{\link{read_facereader}}.
+#' @param include Include \code{All} variables, or just the emotions (\code{Basic}) to clean.
 #'
-#' @return
+#' @return Data frame with fit failures removed, numeric values transformed to class `numeric`,
+#' and factor values transformed to class `factor`.
 #' @export
 #'
 #' @examples
-#'
+#'cleaned <- clean_data(data, include = 'Basic')
 
 clean_data <- function(data, include = "All"){
   data <- data

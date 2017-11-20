@@ -7,11 +7,26 @@
 read_facereader(file, subject = NULL, skip = NULL, ...)
 }
 \arguments{
+\item{file}{Path to the FaceReader \code{.txt} file to be read.}
+
+\item{subject}{A REGEX to extract from the source file a unique subject identifier.
+If \code{NULL} (default), the function will utilize the file name as the unique
+identifier (different from \code{source} which is derived from inside the file).}
+
+\item{skip}{Number of lines to skip before actual data is present in the file.
+If \code{NULL} (defalt), the function will attempt to find where the
+actual data start and estimate based off of front matter how many lines to skip
+when reading in the file.}
+
 \item{...}{Additional arguments to be passed to \code{\link[utils]{read.table}}}
+}
+\value{
+Tidy data frame.
 }
 \description{
 Read Facereader file
 }
 \examples{
+read_facereader(file = system.file("extdata/Participant 2_Trump_Analysis 1.txt", package="facereadeR"))
 
 }
