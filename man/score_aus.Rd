@@ -9,6 +9,9 @@ score_aus(data)
 \arguments{
 \item{data}{}
 }
+\value{
+Dataframe with AUs recoded into numeric values.
+}
 \description{
 Score Action Units numerically
 }

@@ -9,6 +9,9 @@ rename_aus(data)
 \arguments{
 \item{data}{}
 }
+\value{
+Dataframe with AUs renamed to shortened values.
+}
 \description{
 Rename Action Units to their shortened names
 }
