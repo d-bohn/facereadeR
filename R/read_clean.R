@@ -119,8 +119,7 @@ read_facereader <- function(file, subject = NULL, skip = NULL, ...) {
         if (emotions[[i]] %in% vars) {
           data[, emotions[i]] <-
             as.numeric(ifelse(data[, emotions[j]] == 'FIT_FAILED', NA, data[, emotions[i]]))
-        } else
-          next
+        } else next
       }
 
     } else if (include == 'All') {
@@ -160,8 +159,7 @@ read_facereader <- function(file, subject = NULL, skip = NULL, ...) {
         if (nums[[i]] %in% vars) {
           data[, nums[i]] <-
             as.numeric(ifelse(data[, nums[i]] == 'FIT_FAILED', NA, data[, nums[i]]))
-        } else
-          next
+        } else next
       }
 
       for (j in seq_along(facts)) {
@@ -171,8 +169,7 @@ read_facereader <- function(file, subject = NULL, skip = NULL, ...) {
             ifelse(data[, facts[j]] == 'FIT_FAILED', NA, data[, facts[j]])
           data[, facts[j]] <- as.factor(data[, facts[j]])
 
-        } else
-          next
+        } else next
       }
 
       for (k in seq_along(facts)) {
@@ -182,13 +179,11 @@ read_facereader <- function(file, subject = NULL, skip = NULL, ...) {
             ifelse(data[, facts[k]] == 'FIND_FAILED', NA, data[, facts[k]])
           data[, facts[k]] <- as.factor(data[, facts[k]])
 
-        } else {
-          next
-        }
+        } else next
       }
 
-    } else{
-      message('Please specify what to include in cleaning process.')
+    } else {
+      stop('Please specify what to include in cleaning process.')
     }
 
     return(data)
