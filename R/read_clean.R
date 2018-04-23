@@ -21,7 +21,8 @@
 
 read_facereader <- function(file, subject = NULL, skip = NULL, ...){
 
-  src <- read.table(file, sep="\t", as.is = TRUE, strip.white = TRUE, fill=TRUE)[1:10]
+  src <- read.table(file, sep="\t", as.is = TRUE, strip.white = TRUE,
+                    fill=TRUE, row.names = NULL)[1:10,]
 
   position <- as.numeric(rownames(src[grep("Filename", src[,1]), ]))+1
 
@@ -30,28 +31,64 @@ read_facereader <- function(file, subject = NULL, skip = NULL, ...){
   if(is.null(skip)){
 
     start <- NULL
-    if(purrr::is_empty(start)){
-      start <- grep("Video Time", src$V1)
-      skip <- start - 1
-    }
 
     if(purrr::is_empty(start)){
+      start <- which(src[1] == "Video Time")
+      skip <- start - 1
+
+      try1 <- tryCatch({
+        df <- read.table(file, sep="\t", skip=skip, as.is = TRUE,
+                         strip.white = TRUE, fill=TRUE,
+                         header=TRUE)
+      }, warning = function(w) {
+        print(w)
+      }, error = function(e) {
+        class(try1) <- 'error'
+      })
+
+      }
+
+    if(class(try1) == 'error' | purrr::is_empty(start)){
       start <- as.numeric(rownames(src[grep("Filename", src[,1]), ]))
       skip <- start+1
+
+      try2 <- tryCatch({
+        df <- read.table(file, sep="\t", skip=skip, as.is = TRUE,
+                         strip.white = TRUE, fill=TRUE,
+                         header=TRUE)
+      }, warning = function(w) {
+        print(w)
+      }, error = function(e) {
+        class(try1) <- 'error'
+      })
     }
 
-    else(message('Cannot determine start point.'))
+    if (class(try2) == 'error'){
+      start <- which(src[1] == "Frame rate:")
+      skip <- start + 2
 
+      try3 <- tryCatch({
+        df <- read.table(file, sep="\t", skip=skip, as.is = TRUE,
+                         strip.white = TRUE, fill=TRUE,
+                         header=TRUE)
+      }, warning = function(w) {
+        print(w)
+      }, error = function(e) {
+        stop('Cannot determine start point. Please specify using "skip" argument.')
+      })
+    }
+
+  } else {
+    df <- read.table(file, sep="\t", skip=skip, as.is = TRUE,
+                     strip.white = TRUE, fill=TRUE,
+                     header=TRUE)
   }
+
   if (is.null(subject)){
     subject <- file
-  } else{
+  } else {
     subject <- stringr::str_extract(source, subject)
   }
-
-  df <- read.table(file, sep="\t", skip=skip, as.is = TRUE,
-                   strip.white = TRUE, fill=TRUE,
-                   header=TRUE, ...)
 
   data <- df %>%
     mutate(., subject_nr = subject,

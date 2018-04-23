@@ -14,7 +14,7 @@ If \code{NULL} (default), the function will utilize the file name as the unique
 identifier (different from \code{source} which is derived from inside the file).}
 
 \item{skip}{Number of lines to skip before actual data is present in the file.
-If \code{NULL} (defalt), the function will attempt to find where the
+If \code{NULL} (default), the function will attempt to find where the
 actual data start and estimate based off of front matter how many lines to skip
 when reading in the file.}
 
