@@ -32,6 +32,7 @@ read_facereader <- function(file, subject = NULL, skip = NULL, ...) {
 
   position <- which(src[1] == "Filename:")
   source <- src[4,2]
+  # source <- position
 
   if (is.null(skip)) {
     start <- NULL
@@ -245,7 +246,7 @@ read_facereader <- function(file, subject = NULL, skip = NULL, ...) {
   #'
   #' @examples
 
-  score_aus <- function(data) {
+  score_aus <- function(data, score0 = FALSE) {
     AUs <- c(
       "AU01",
       "AU02",
@@ -269,17 +270,31 @@ read_facereader <- function(file, subject = NULL, skip = NULL, ...) {
       "AU43"
     )
 
-    data[AUs] <-
-      purrr::map_df(data[AUs],
-                    ~ dplyr::recode(
-                      .x,
-                      A = 1,
-                      B = 2,
-                      C = 3,
-                      D = 4,
-                      E = 5,
-                      NotActive = 0
-                    ))
+    if (isTRUE(score0)) {
+      data[AUs] <-
+        purrr::map_df(data[AUs],
+                      ~ dplyr::recode(
+                        .x,
+                        A = 1,
+                        B = 2,
+                        C = 3,
+                        D = 4,
+                        E = 5,
+                        NotActive = 0
+                      ))
+    } else {
+      data[AUs] <-
+        purrr::map_df(data[AUs],
+                      ~ dplyr::recode(
+                        .x,
+                        A = 1,
+                        B = 2,
+                        C = 3,
+                        D = 4,
+                        E = 5
+                      ))
+    }
+
 
     return(data)
   }
